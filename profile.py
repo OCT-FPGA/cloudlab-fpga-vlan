@@ -111,9 +111,9 @@ for i in range(params.nodeCount):
     fpga.SubNodeOf(node)
     
     fpga_iface1 = fpga.addInterface()
-    fpga_iface1.component_id = "eth0" + name
+    fpga_iface1.component_id = "eth0" 
     fpga_iface2 = fpga.addInterface() 
-    fpga_iface2.component_id = "eth1" + name
+    fpga_iface2.component_id = "eth1"
     
     lan.addInterface(fpga_iface1)
     lan.addInterface(fpga_iface2)
