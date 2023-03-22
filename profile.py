@@ -99,7 +99,8 @@ for i in range(params.nodeCount):
     node.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
     
     # Since we want to create network links to the FPGA, it has its own identity.
-    fpga = request.RawPC("fpga")
+    fpganame = "fpga" + str(i)
+    fpga = request.RawPC(fpganame)
     # UMass cluster
     fpga.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
     # Assign to the fgpa node
