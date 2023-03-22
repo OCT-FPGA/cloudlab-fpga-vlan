@@ -125,7 +125,7 @@ for i in range(params.nodeCount):
     fpga.SubNodeOf(node)
     
     # Debugging
-    request.skipVlans()
+    #request.skipVlans()
     
     if params.nodeCount > 1 and params.enable40ginterface == True:
         iface = node.addInterface("enp134s0f0")
