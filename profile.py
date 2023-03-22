@@ -104,7 +104,7 @@ for i in range(params.nodeCount):
     # UMass cluster
     fpga.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
     # Assign to the fgpa node
-    fpga.component_id = "fpga" 
+    fpga.component_id = "fpga" + str(i)
     # Use the default image for the type of the node selected. 
     fpga.setUseTypeDefaultImage()
 
