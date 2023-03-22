@@ -119,7 +119,7 @@ for i in range(params.nodeCount):
     fpga.setUseTypeDefaultImage()
 
     # Secret sauce.
-    fpga.SubNodeOf(host)
+    fpga.SubNodeOf(node)
     
     # Debugging
     request.skipVlans()
