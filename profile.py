@@ -109,6 +109,21 @@ for i in range(params.nodeCount):
     node.hardware_type = "fpga-alveo"
     node.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
     
+    # Since we want to create network links to the FPGA, it has its own identity.
+    fpga = request.RawPC("fpga")
+    # UMass cluster
+    fpga.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
+    # Assign to the fgpa node
+    fpga.component_id = "fpga" + name
+    # Use the default image for the type of the node selected. 
+    fpga.setUseTypeDefaultImage()
+
+    # Secret sauce.
+    fpga.SubNodeOf(host)
+    
+    # Debugging
+    request.skipVlans()
+    
     if params.nodeCount > 1 and params.enable40ginterface == True:
         iface = node.addInterface("enp134s0f0")
         lan.addInterface(iface)
