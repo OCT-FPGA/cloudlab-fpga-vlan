@@ -106,17 +106,17 @@ for i in range(params.nodeCount):
     fpga.component_id = "fpga" + name
     # Use the default image for the type of the node selected. 
     fpga.setUseTypeDefaultImage()
+
+    # Secret sauce.
+    fpga.SubNodeOf(node)
     
     fpga_iface1 = fpga.addInterface()
     fpga_iface1.component_id = "eth0"
     fpga_iface2 = fpga.addInterface()
     fpga_iface2.component_id = "eth1"
-
+    
     lan.addInterface(fpga_iface1)
     lan.addInterface(fpga_iface2)
-
-    # Secret sauce.
-    fpga.SubNodeOf(node)
     
     # Optional Blockstore
     if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
