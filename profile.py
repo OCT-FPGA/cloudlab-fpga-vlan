@@ -50,10 +50,6 @@ pc.defineParameter("osImage", "Select Image",
                    portal.ParameterType.IMAGE,
                    imageList[0], imageList,
                    longDescription="Supported operating systems are Ubuntu and CentOS.")                    
-pc.defineParameter("enable40ginterface", "Enable 40G Network Interface",
-                   portal.ParameterType.BOOLEAN, False,
-                   advanced=False,
-                   longDescription="Enable the 40G NIC on the host for FPGA-to-host experiments.")
 
 # Optional ephemeral blockstore
 pc.defineParameter("tempFileSystemSize", "Temporary Filesystem Size",
@@ -90,16 +86,6 @@ if params.osImage == "urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS8-64-S
   
 pc.verifyParameters()
 
-#if params.enable40ginterface == True:
-#    if params.nodeCount > 1:
-#        if params.nodeCount == 2:
-#            lan = request.Link()
-#        else:
-#            lan = request.LAN()
-#            pass
-#        pass   
-#    pass
-
 lan = request.LAN()
 
 # Process nodes, adding to FPGA network
@@ -123,14 +109,6 @@ for i in range(params.nodeCount):
 
     # Secret sauce.
     fpga.SubNodeOf(node)
-    
-    # Debugging
-    #request.skipVlans()
-    
-    if params.nodeCount > 1 and params.enable40ginterface == True:
-        iface = node.addInterface("enp134s0f0")
-        lan.addInterface(iface)
-        pass
     
     # Optional Blockstore
     if params.tempFileSystemSize > 0 or params.tempFileSystemMax:
